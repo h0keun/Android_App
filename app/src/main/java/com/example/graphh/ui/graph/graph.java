@@ -162,8 +162,9 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         @ColorInt int color2 = typedValue1.data;
         set1.setFillColor(color2);//테마별 차트아래 채우기 색상
 
+
         chart.animateXY(2000,2000); //차트 그려지는 애니매이션
-        set1.setDrawValues(true);//각 데이터값 안보이게
+        set1.setDrawValues(false);//각 데이터값 안보이게
         set1.setDrawCircles(true);//표시점 안보이게
         set1.setCircleRadius((float)2);//원 반지름크기
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);//그래프곡선

@@ -101,7 +101,7 @@ public class DashboardFragment extends Fragment {
                 brr.readLine();
             } // BufferedReader을 통해 해당날짜에 해당하는 줄 이외의 줄을 읽지 않음
             text_set4 = (TextView) v.findViewById(R.id.text_set4) ;
-            text_set4.setText(brr.readLine()) ; //해당날짜에 해당하는 줄의 명언표시
+            text_set4.setText(brr.readLine()+" ") ; //해당날짜에 해당하는 유명인표시, 이텔릭체라 글자조금 짤려서 공백추가
 
             iss.close() ;
         } catch (Exception e) {
