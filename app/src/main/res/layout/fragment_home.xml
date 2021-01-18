@@ -164,7 +164,7 @@
                     <TextView
                         android:background="@color/colorBackground2"
                         android:id="@+id/diaryTextView"
-                        android:text="날짜를 클릭하시고 일정을 확인해보세요 "
+                        android:text="날짜를 클릭하시고 일정을 추가해 주세요 "
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
