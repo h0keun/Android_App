@@ -1,4 +1,4 @@
-package com.example.graphh;
+package com.growth.graphh;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;

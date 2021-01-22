@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.graphh">
+    package="com.growth.graphh">
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -11,8 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Graphh">
             <activity
-                android:name=".MainActivity"
+                android:name="com.growth.graphh.MainActivity"
                 android:theme="@style/SplashTheme"
+                android:configChanges="orientation|screenSize|uiMode"
                 android:windowSoftInputMode="adjustResize">
 
             <intent-filter>
@@ -21,15 +22,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--ca-app-pub-1350498864943165~2739679952 my-->
+        <!--ca-app-pub-3940256099942544~3347511713 sub-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
 
-        <service android:name=".FirebaseMessagingService">
+        <service android:name="com.growth.graphh.FirebaseMessagingService">
             <intent-filter>
 
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
 
         </service>
-        <service android:name=".FirebaseinstanceIDServices">
+        <service android:name="com.growth.graphh.FirebaseinstanceIDServices">
 
             <intent-filter>
 

@@ -1,7 +1,6 @@
-package com.example.graphh;
+package com.growth.graphh;
 
 import org.junit.Test;
-import org.testng.annotations.AfterTest;
 
 import static org.junit.Assert.*;
 

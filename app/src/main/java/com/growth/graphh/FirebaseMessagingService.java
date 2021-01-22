@@ -1,4 +1,4 @@
-package com.example.graphh;
+package com.growth.graphh;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

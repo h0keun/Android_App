@@ -1,8 +1,9 @@
-package com.example.graphh.ui.notifications;
+package com.growth.graphh.ui.notifications;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,20 +14,23 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import com.example.graphh.DayEndDialog;
-import com.example.graphh.R;
+import com.growth.graphh.DayEndDialog;
+import com.growth.graphh.R;
+
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
@@ -35,13 +39,13 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class NotificationsFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
     String fname2=null;
     String str=null;
     String str6=null;
     String str7=null;
     String go=null;
     String ss;
+    String famous;
     String remembertxt2;
     int count_click;
     int k_count;
@@ -50,25 +54,18 @@ public class NotificationsFragment extends Fragment {
     float s_num;
     float u;
     private RatingBar rating_bar,rating_bar_sub;
-    TextView textView3,dateNow,rating_txt,text_set2,contextText2;
+    TextView textView3,dateNow,rating_txt,text_set2,contextText2,text_set33, text_set44;
     EditText contextEditText2;
     Button cha_Btn2,sbtn;
+    ImageView famous_imgg;
     ImageButton day_end;
     public CalendarView calendarView2;
     ArrayList<Float> list = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+
         View v = inflater.inflate(R.layout.fragment_notifications, container, false);
-        /*final TextView textView = root.findViewById(R.id.text_notifications);*/
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                /*textView.setText(s);*/
-            }
-        });
 
         InputMethodManager mInputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         //버튼클릭시 키보드내리기
@@ -97,6 +94,57 @@ public class NotificationsFragment extends Fragment {
                 newFragment.show(getFragmentManager(), "dayend");
             }
         });
+
+        SimpleDateFormat sdf55 = new SimpleDateFormat("d", Locale.getDefault());
+        Calendar calendar33 = Calendar.getInstance();
+        calendar33.add(calendar33.DATE, +1);
+        String toDay66 = sdf55.format(calendar33.getTime());
+        int day_famous = Integer.parseInt(toDay66);
+        // 일자별로 다른 명언 불러들이기 위함
+
+        AssetManager am = getResources().getAssets(); // Asset폴더에 있는 파일 읽기
+        InputStream is = null;
+
+        try {
+            is = am.open("famous_saying");
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            for (int i = 1; i < day_famous; i++) {
+                br.readLine();
+            } // BufferedReader을 통해 해당날짜에 해당하는 줄 이외의 줄을 읽지 않음
+            text_set33 = (TextView) v.findViewById(R.id.text_set33);
+            text_set33.setText(br.readLine()); //해당날짜에 해당하는 줄의 명언표시
+
+            is.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        InputStream iss = null;
+        try {
+            iss = am.open("famous_saying_who");
+
+            BufferedReader brr = new BufferedReader(new InputStreamReader(iss));
+            for (int i = 1; i < day_famous; i++) {
+                brr.readLine();
+            } // BufferedReader을 통해 해당날짜에 해당하는 줄 이외의 줄을 읽지 않음
+            text_set44 = (TextView) v.findViewById(R.id.text_set44);
+            text_set44.setText(brr.readLine() + " "); //해당날짜에 해당하는 유명인표시, 이텔릭체라 글자조금 짤려서 공백추가
+
+            iss.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        famous_imgg = v.findViewById(R.id.famous_imgg);
+        famous = Integer.toString(day_famous);
+        String famous_who = "@drawable/day_" + famous + "_who";
+        String packName = this.getActivity().getPackageName();
+        int resID = getResources().getIdentifier(famous_who, "drawable", packName);
+        famous_imgg.setImageResource(resID);  // 일자별로 해당하는 인물사진 불러오기
+
+
 
         rating_bar=v.findViewById(R.id.rating_bar);
         rating_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

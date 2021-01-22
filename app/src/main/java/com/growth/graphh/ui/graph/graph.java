@@ -1,9 +1,8 @@
-package com.example.graphh.ui.graph;
+package com.growth.graphh.ui.graph;
 
 import androidx.annotation.ColorInt;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -20,8 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import com.example.graphh.DatePickerFragment;
-import com.example.graphh.R;
+import com.growth.graphh.DatePickerFragment;
+import com.growth.graphh.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -31,6 +30,13 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.android.ads.nativetemplates.TemplateView;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.formats.NativeAdOptions;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -44,8 +50,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class graph extends Fragment implements DatePickerDialog.OnDateSetListener{
     private DatePickerDialog.OnDateSetListener callbackMethod;
-    private GraphViewModel mViewModel;
-    public CardView button_click;
+    public CardView button_click,ad_card;
     public TextView diaryTextView2,textView20,textView21,days;
     public String str10,str11;
     String fname10,fname11;
@@ -56,6 +61,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
     float u;
     ArrayList<Float> xtx = new ArrayList<>();
 
+
     public static graph newInstance() {
         return new graph();
     }
@@ -63,6 +69,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.graph_fragment, container, false);
 
         diaryTextView2=v.findViewById(R.id.diaryTextView2); //기록확인하기 날짜 보여지는곳
@@ -70,7 +77,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         textView21=v.findViewById(R.id.textView21); //계획한 일
         LineChart chart = v.findViewById(R.id.linechart);
 
-
+        ad_card=v.findViewById(R.id.ad_card);
         button_click=v.findViewById(R.id.button_click);//DatePickerDialog 띄우기
         button_click.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,8 +169,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         @ColorInt int color2 = typedValue1.data;
         set1.setFillColor(color2);//테마별 차트아래 채우기 색상
 
-
-        chart.animateXY(2000,2000); //차트 그려지는 애니매이션
+      /*  chart.animateXY(1500,1500); //차트 그려지는 애니매이션*/
         set1.setDrawValues(false);//각 데이터값 안보이게
         set1.setDrawCircles(true);//표시점 안보이게
         set1.setCircleRadius((float)2);//원 반지름크기
@@ -180,6 +186,35 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         chart.getAxisLeft().setDrawGridLines(false);
         chart.getAxisRight().setDrawGridLines(false);
         chart.getLegend().setEnabled(false);///라벨이름 숨기기
+
+        /*ca-app-pub-1350498864943165/3398973741 real*/
+        /*ca-app-pub-3940256099942544/2247696110 fake*/
+
+        AdLoader adLoader = new AdLoader.Builder(getActivity(), "ca-app-pub-3940256099942544/2247696110")
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        // Show the ad.
+
+                        ad_card.setVisibility(View.VISIBLE);
+                        TemplateView template2 = v.findViewById(R.id.my_template2);
+                        template2.setNativeAd(unifiedNativeAd);
+                    }
+                })
+                .withAdListener(new AdListener() {
+                    @Override
+                    public void onAdFailedToLoad(int errorCode) {
+                        // Handle the failure by logging, altering the UI, and so on.
+                    }
+                })
+                .withNativeAdOptions(new NativeAdOptions.Builder()
+                        // Methods in the NativeAdOptions.Builder class can be
+                        // used here to specify individual options settings.
+                        .build())
+                .build();
+        adLoader.loadAds(new AdRequest.Builder().build(), 3);
+
+
         return v;
     }
     @Override
@@ -237,6 +272,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
     public class xAxisValueFormatter extends ValueFormatter {
         //그래프의 x축 라벨을 날짜로 설정
         private final LineChart chart;
+
         public xAxisValueFormatter(LineChart chart) {
             this.chart = chart;
         }
@@ -248,24 +284,18 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
             //d-day에 맞게 라벨 크기가 증가해야 함
 
             Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat mFormat = new SimpleDateFormat("M월d일",Locale.getDefault());
+            SimpleDateFormat mFormat = new SimpleDateFormat("M월d일", Locale.getDefault());
 
             final ArrayList<String> xLabel = new ArrayList<>();
-            calendar.add(calendar.DATE, -(k_count)-2);
-            for (int j = 0; j <= k_count+1; j++) {
+            calendar.add(calendar.DATE, -(k_count) - 2);
+            for (int j = 0; j <= k_count + 1; j++) {
                 calendar.add(calendar.DAY_OF_YEAR, 1);
                 Date date = calendar.getTime();
                 String txtDate = mFormat.format(date);
                 xLabel.add(txtDate);
             }
-            xLabel.set(k_count+1,"오늘");
+            xLabel.set(k_count + 1, "오늘");
             return xLabel.get((int) value);
         }
-    }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(GraphViewModel.class);
-        // TODO: Use the ViewModel
     }
 }

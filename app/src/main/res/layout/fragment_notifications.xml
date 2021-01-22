@@ -48,7 +48,10 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp">
         <LinearLayout
@@ -104,7 +107,7 @@
                 android:paddingLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="150dp"
+                android:minHeight="110dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginRight="25dp"></TextView>
@@ -114,7 +117,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="vertical">
                     <ImageView
                         android:layout_width="20dp"
@@ -130,7 +136,7 @@
                         android:textSize="15sp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:text="항상 명심할 것"
+                        android:text="나의 다짐!"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"></TextView>
                     <ImageView
@@ -141,6 +147,53 @@
                         android:scaleType="fitCenter"
                         android:layout_gravity="right">
                     </ImageView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:weightSum="1">
+                    <ImageView
+                        android:id="@+id/famous_imgg"
+                        android:layout_weight="0.1"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:scaleType="fitCenter">
+                    </ImageView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:textSize="12sp"
+                            android:text="텍스트위치"
+                            android:id="@+id/text_set33"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_set44"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"
+                            android:textStyle="italic"
+                            android:text="텍스트위치"
+                            android:layout_gravity="right"
+                            android:gravity="right">
+                        </TextView>
+                    </LinearLayout>
                 </LinearLayout>
 
                     <androidx.cardview.widget.CardView
@@ -207,7 +260,7 @@
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="150dp"
+            android:minHeight="120dp"
             android:hint="내용을 입력하세요"
             android:visibility="visible"
             android:background="@null"></EditText>
@@ -219,7 +272,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
-                    android:minHeight="150dp"
+                    android:minHeight="110dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@null"></TextView>
@@ -231,7 +284,6 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp">
