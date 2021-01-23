@@ -180,9 +180,4 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onConfigurationChanged(newConfig);//더 좋은 방법 찾아보기! >> 화면회전은 이걸로하고 다크모드는 다른 방법이 있는듯
     }//화면회전만 썻을경우엔 문제 없었는데 테마변경까지 합치니까 둘다 재실행으로 넘어감 화면회전시 에 테마를 새로 읽어서 그런듯?
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        finish();
-    }
 }
