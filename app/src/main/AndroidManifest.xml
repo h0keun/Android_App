@@ -14,8 +14,9 @@
                 android:name="com.growth.graphh.MainActivity"
                 android:theme="@style/SplashTheme"
                 android:configChanges="orientation|screenSize|uiMode"
+                android:clearTaskOnLaunch="true"
                 android:windowSoftInputMode="adjustResize">
-
+                <!--android:clearTaskOnLaunch="true" 오랜시간 앱 방치후 다시 앱들어갔을때 액티비티 중복문제 해결위해 넣었는데 잘 작동하는지는 모르겠음-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

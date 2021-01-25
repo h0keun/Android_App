@@ -2,6 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Graphh" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="tabBackground">@color/tab_dark</item>
         <item name="colorPrimary">@color/white</item>
         <item name="android:textColor">@color/white</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -17,6 +20,7 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash2</item>
         <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
 
     </style>
 </resources>

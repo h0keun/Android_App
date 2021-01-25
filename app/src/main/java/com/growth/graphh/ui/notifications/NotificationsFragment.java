@@ -2,6 +2,7 @@ package com.growth.graphh.ui.notifications;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -21,7 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import com.growth.graphh.DayEndDialog;
+import com.growth.graphh.MainActivity;
 import com.growth.graphh.R;
+import com.growth.graphh.ui.graph.graph;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -366,6 +369,15 @@ public class NotificationsFragment extends Fragment {
 
                 str7=contextEditText2.getText().toString();
                 contextText2.setText(str7);//나에게 남길 메시지
+
+                /*intent.setAction(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
+
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();//프래그먼트 show,hide상태라 변화하는 그래프 안보여서 액티비티 재실행
             }
         });
 

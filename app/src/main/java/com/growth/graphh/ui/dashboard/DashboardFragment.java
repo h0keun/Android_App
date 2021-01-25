@@ -145,7 +145,7 @@ public class DashboardFragment extends Fragment {
         }
         /*ca-app-pub-1350498864943165/3398973741 real*/
         /*ca-app-pub-3940256099942544/2247696110 fake*/
-        AdLoader adLoader = new AdLoader.Builder(getActivity(), "ca-app-pub-3940256099942544/2247696110")
+        AdLoader adLoader = new AdLoader.Builder(getContext(), "ca-app-pub-3940256099942544/2247696110")
                 .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
                     @Override
                     public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
@@ -173,6 +173,7 @@ public class DashboardFragment extends Fragment {
 /*    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //AdLoader 이쪽에 넣어야 하는거같은데 이유 찾아봐야할듯 프래그먼트 생명주기
     }*/
 
 }

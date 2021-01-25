@@ -1,12 +1,12 @@
 package com.growth.graphh;
 
-import android.app.usage.ConfigurationStats;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
-
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -16,17 +16,12 @@ import com.growth.graphh.ui.graph.graph;
 import com.growth.graphh.ui.home.HomeFragment;
 import com.growth.graphh.ui.notifications.NotificationsFragment;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     long day_count;
     long count;
     int k_count;
-    int t;
-
     final Fragment fragment1 = new HomeFragment();
     final Fragment fragment2 = new DashboardFragment();
     final Fragment fragment3 = new NotificationsFragment();
@@ -51,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Graphh);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); //화면전환이나 테마변경시 액티비티 중복 방지하기위해 스택제거(제대로 작동하는지는 모르겠음)
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -61,11 +55,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fm.beginTransaction().add(R.id.container,fragment3, "3").commit();//젤먼저 추가해줘야 함
+        fm.beginTransaction().add(R.id.container, fragment3, "3").commit();//젤먼저 추가해줘야 함
         fm.beginTransaction().add(R.id.container, fragment1, "1").hide(fragment1).commit();
         fm.beginTransaction().add(R.id.container, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.container, fragment4, "4").hide(fragment4).commit();
-
 
         pref_start = getSharedPreferences("pref_start", MODE_PRIVATE);
         //앱 처음 실행했을 때 1번만 감지하기위해 ifFirstRv un true로 두고 실행
@@ -135,6 +128,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupBottomNavigation(){//프래그먼트 바뀔떄마다 애드몹 리퀘스트로 앱이 느려져서 add,hide 사용
 
         BottomNavigationView bottomNavigationView =findViewById(R.id.bottomNavigationView);
+        TypedValue typedValue = new TypedValue(); //테마별 바텀네비게이션 뷰 색상
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.tabBackground, typedValue, true);
+        @ColorInt int color = typedValue.data;
+        bottomNavigationView.setBackgroundColor(color);
         bottomNavigationView.setSelectedItemId(R.id.navigation_notifications);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -165,19 +163,35 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        //화면회전시 recreate 방지(fragment add,hide라 중첩되기 떄문)
+    public void onConfigurationChanged(@NonNull Configuration newConfig) { //화면전환이나 테마변경시 recreate로 엑티비티 중복되는것 막기위해 그냥 액티비티 재실행
+        super.onConfigurationChanged(newConfig);
+        int currentNightMode = newConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
-        int currentNightMode = newConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK; // 테마변경시 recreate방지
         switch (currentNightMode) {
             case Configuration.UI_MODE_NIGHT_NO:
             case Configuration.UI_MODE_NIGHT_YES:
-
-                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;
         }
-        super.onConfigurationChanged(newConfig);//더 좋은 방법 찾아보기! >> 화면회전은 이걸로하고 다크모드는 다른 방법이 있는듯
-    }//화면회전만 썻을경우엔 문제 없었는데 테마변경까지 합치니까 둘다 재실행으로 넘어감 화면회전시 에 테마를 새로 읽어서 그런듯?
+    }
 }
+
+// 개선헤야할 점
+// 1. 기존에 NavController에서 bottomnavigation 클릭시 프래그먼트 replace때문에 매번 광고요청을 해서 앱이 느려졌음.
+// >> 프래그먼트 add,hide로 앱이 느려지는것 방지함
+
+// 2. 프래그먼트 add,hide로 광고리퀘스트를 막고 앱이 느려지는것 막았으나 화면전환이나 테마변경시 recreate로 액티비티가 중첩되었음.
+// >> configChanges를 통해 화면전환시에 액티비티 중첩을 막았지만, 테마변경이 안돼서 액티비티 재실행으로 화전전환시에도 동일하게 적용함
+// >> 화면회전은 이대로 적용하고 테마변경시 recreate막는거는 다른 방법 있는듯함
+
+// 3. 오늘탭에서 평점매기고 저장하면 그래프가 변해야하는데 프래그먼트 add,hide로 바뀌어서 그래프에 적용되는게 바로안보이고 재실행 해야 적용되서 보임
+// >> 마찬가지로 저장누르면 액티비티 재 시작으로 구성함
+
+// 4. 무슨경우인지 모르겠으만 어떤경우에는 앱 재실행시 프래그먼트 겹쳐서보임//엑티비티 스텍계속 쌓여서 생기는 문제인듯
+// >>FLAG_ACTIVITY_CLEAR_TASK 랑, clearTaskOnLaunch="true" 적용했으나 제대로 작동하는지 확인 필요함
+
+// 찾은 문제들 모두 엑티비티 재시작으로 해결한거라 불안정함. 스택관리,생명주기 등등 고려할게 많은거같음
+// 기존에 navController 사용하면 프래그먼트 replace라 광고 리퀴스트때문에 앱 느려지는것 말고 문제가 하나도 없음
+// 프래그먼트 replace로 두고 뷰모델 활용하는 방안 고려해 볼것

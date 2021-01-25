@@ -169,7 +169,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         @ColorInt int color2 = typedValue1.data;
         set1.setFillColor(color2);//테마별 차트아래 채우기 색상
 
-      /*  chart.animateXY(1500,1500); //차트 그려지는 애니매이션*/
+        chart.animateXY(1500,1500);//차트 그려지는 애니매이션
         set1.setDrawValues(false);//각 데이터값 안보이게
         set1.setDrawCircles(true);//표시점 안보이게
         set1.setCircleRadius((float)2);//원 반지름크기
@@ -298,4 +298,9 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
             return xLabel.get((int) value);
         }
     }
+    /*    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //AdLoader 이쪽에 넣어야 하는거같은데 이유 찾아봐야할듯 프래그먼트 생명주기
+    }*/
 }
