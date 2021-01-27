@@ -24,16 +24,12 @@ import static android.content.Context.MODE_PRIVATE;
 public class HomeFragment extends Fragment {
 
     LinearLayout remember,remember_edit;
-    public String remembertxt=null;
-    public String fname=null;
-    public String str=null;
-    public String str5=null;
+    public String remembertxt, fname, str, str5=null;
     public CalendarView calendarView;
     public Button cha_Btn,del_Btn,save_Btn;
     public ImageButton remember_back,remember_save;
     public TextView diaryTextView,textView2,textView4,text_set;
     public EditText contextEditText,remember_content;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -84,14 +80,18 @@ public class HomeFragment extends Fragment {
             }
         });
         remember_back.setOnClickListener(new View.OnClickListener(){
-            //실수로 클릭한 경우를 대비한 뒤로가기 버튼
+            // 삭제버튼
             @Override
             public void onClick(View view){
                 mInputMethodManager.hideSoftInputFromWindow(remember_content.getWindowToken(), 0);
-                remember_edit.setVisibility(View.INVISIBLE);
+                getActivity().deleteFile(remembertxt);
+                str5=null;
+                remember_content.setText("");
+                text_set.setText("나의 다짐 작성하기(클릭해주세요)");
+                text_set.setVisibility(View.VISIBLE);
                 remember_back.setVisibility(View.GONE);
                 remember_save.setVisibility(View.GONE);
-                text_set.setVisibility(View.VISIBLE);
+                remember_edit.setVisibility(View.INVISIBLE);
             }
         });
 

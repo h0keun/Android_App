@@ -5,7 +5,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/app_main_icon3"
+        android:icon="@drawable/app_main_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -14,8 +14,9 @@
                 android:name="com.growth.graphh.MainActivity"
                 android:theme="@style/SplashTheme"
                 android:configChanges="orientation|screenSize|uiMode"
-                android:clearTaskOnLaunch="true"
+                android:noHistory="true"
                 android:windowSoftInputMode="adjustResize">
+                <!--android:noHistory="true" 홈키로 나가도 다시들어가면 리셋되는듯 지금으로선 최선같음-->
                 <!--android:clearTaskOnLaunch="true" 오랜시간 앱 방치후 다시 앱들어갔을때 액티비티 중복문제 해결위해 넣었는데 잘 작동하는지는 모르겠음-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,11 +2,9 @@ package com.growth.graphh.ui.notifications;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import com.growth.graphh.DayEndDialog;
-import com.growth.graphh.MainActivity;
 import com.growth.graphh.R;
-import com.growth.graphh.ui.graph.graph;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,23 +34,12 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import static android.content.Context.MODE_PRIVATE;
 
-
 public class NotificationsFragment extends Fragment {
 
-    String fname2=null;
-    String str=null;
-    String str6=null;
-    String str7=null;
-    String go=null;
-    String ss;
-    String famous;
-    String remembertxt2;
-    int count_click;
-    int k_count;
-    int k;
-    float s;
-    float s_num;
-    float u;
+    String fname2,str,str6,str7,go=null;
+    String ss, famous, remembertxt2;
+    int count_click, k_count, k;
+    float s, s_num, u;
     private RatingBar rating_bar,rating_bar_sub;
     TextView textView3,dateNow,rating_txt,text_set2,contextText2,text_set33, text_set44;
     EditText contextEditText2;
@@ -91,9 +75,8 @@ public class NotificationsFragment extends Fragment {
             //공지내용에 해당하는 dialog띄우기
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new DayEndDialog(); // creating DialogFragment which creates DatePickerDialog
-                newFragment.setTargetFragment(NotificationsFragment.this,0);  // Passing this fragment DatePickerFragment.
-                // As i figured out this is the best way to keep the reference to calling activity when using FRAGMENT.
+                DialogFragment newFragment = new DayEndDialog();
+                newFragment.setTargetFragment(NotificationsFragment.this,0);
                 newFragment.show(getFragmentManager(), "dayend");
             }
         });
@@ -139,15 +122,12 @@ public class NotificationsFragment extends Fragment {
             e.printStackTrace();
         }
 
-
         famous_imgg = v.findViewById(R.id.famous_imgg);
         famous = Integer.toString(day_famous);
         String famous_who = "@drawable/day_" + famous + "_who";
         String packName = this.getActivity().getPackageName();
         int resID = getResources().getIdentifier(famous_who, "drawable", packName);
         famous_imgg.setImageResource(resID);  // 일자별로 해당하는 인물사진 불러오기
-
-
 
         rating_bar=v.findViewById(R.id.rating_bar);
         rating_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -192,7 +172,6 @@ public class NotificationsFragment extends Fragment {
                 if(rating_bar.getRating() == 3.5) {
                     rating_txt.setText("어제보다 나아진 오늘");
                     s = rating - 2.5f;
-
                 }
                 if(rating_bar.getRating() == 1.5) {
                     rating_txt.setText("어제보다 못한 오늘");
@@ -267,12 +246,7 @@ public class NotificationsFragment extends Fragment {
             editor.putInt("key2",k);
             editor.commit();// d-day 증가한만큼 list.add해주어야하기 때문에 k++로 횟수를 맞춰주고 저장함
         }
-
-        Log.d("LOG_TAG",(int)k+"k 값은??");
-        Log.d("LOG_TAG",(int)k_count+"k_count 값은??");
-        Log.d("LOG_TAG",ss+" ss 값은??");
-        Log.d("LOG_TAG",list+" list 값은??");
-
+        /*Log.d("LOG_TAG",(int)k+"k 값은??");*/
         if(count_click >0){ //작성완료 버튼을 눌렀을 경우
             calendarView2=v.findViewById(R.id.calendarView2);
             textView3=v.findViewById(R.id.textView3);
@@ -329,9 +303,7 @@ public class NotificationsFragment extends Fragment {
             if(rating_bar_sub.getRating() == 1.5) {
                 rating_txt.setText("어제보다 못한 오늘");
             }
-
         }
-
         sbtn = (Button) v.findViewById(R.id.sbtn);
         sbtn.setOnClickListener(new View.OnClickListener() { //작성완료 버튼
             @Override
@@ -369,15 +341,6 @@ public class NotificationsFragment extends Fragment {
 
                 str7=contextEditText2.getText().toString();
                 contextText2.setText(str7);//나에게 남길 메시지
-
-                /*intent.setAction(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
-
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();//프래그먼트 show,hide상태라 변화하는 그래프 안보여서 액티비티 재실행
             }
         });
 
@@ -474,16 +437,12 @@ public class NotificationsFragment extends Fragment {
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return v;
     }
-
     @SuppressLint("WrongConstant")
     public void saveDiary2(String readDay2){
-
         //나에게 남길 메시지작성을 위해 write
         FileOutputStream fos=null;
-
         try{
             fos=getActivity().openFileOutput(readDay2, Context.MODE_PRIVATE);
             String content=contextEditText2.getText().toString();

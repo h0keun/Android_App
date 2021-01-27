@@ -122,7 +122,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="15sp"
-                    android:text="click"
+                    android:text="나의 다짐 작성하기(클릭해주세요)"
                     android:visibility="visible"></TextView>
             </FrameLayout>
             <ImageView

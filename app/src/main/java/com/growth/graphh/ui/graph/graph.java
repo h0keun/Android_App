@@ -11,8 +11,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +28,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.ads.nativetemplates.TemplateView;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.formats.NativeAdOptions;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -53,15 +44,10 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
     public CardView button_click,ad_card;
     public TextView diaryTextView2,textView20,textView21,days;
     public String str10,str11;
-    String fname10,fname11;
-    String ss;
-    String dd;
-    int k;
-    int k_count;
+    String fname10, fname11, ss, dd;
+    int k, k_count;
     float u;
     ArrayList<Float> xtx = new ArrayList<>();
-
-
     public static graph newInstance() {
         return new graph();
     }
@@ -77,7 +63,6 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         textView21=v.findViewById(R.id.textView21); //계획한 일
         LineChart chart = v.findViewById(R.id.linechart);
 
-        ad_card=v.findViewById(R.id.ad_card);
         button_click=v.findViewById(R.id.button_click);//DatePickerDialog 띄우기
         button_click.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +73,6 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
                 newFragment.show(getFragmentManager(), "datePicker");
             }
         });
-
 
         SharedPreferences pref = getActivity().getSharedPreferences("pref", MODE_PRIVATE);
         k = pref.getInt("key2", 1);//d-day와 비교해 그래프 그리기 위해 필요
@@ -109,8 +93,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
             xtx.add(Float.parseFloat(st.nextToken()));
         }//오늘 탭에서 저장한 배열을 불러온다.
 
-
-        Log.d("LOG_TAG",xtx +"xtx 값은??");
+       /* Log.d("LOG_TAG",xtx +"xtx 값은??");*/
         ArrayList<Entry> values = new ArrayList<>();
         values.add(new Entry(0, 0));
         values.add(new Entry(1, 0)); //그래프 그리기위한 초기 값
@@ -171,10 +154,10 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
 
         chart.animateXY(1500,1500);//차트 그려지는 애니매이션
         set1.setDrawValues(false);//각 데이터값 안보이게
-        set1.setDrawCircles(true);//표시점 안보이게
-        set1.setCircleRadius((float)2);//원 반지름크기
+        set1.setDrawCircles(false);//표시점 안보이게
+        set1.setCircleRadius((float)1.5);//원 반지름크기
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);//그래프곡선
-        set1.setLineWidth((float)1.5);//선두께
+        set1.setLineWidth((float)1.0);//선두께
         set1.setHighLightColor(Color.rgb(255, 183, 0));//그래프 선택시 그 수치를 기준으로 나타나는 십자가 선
         chart.getDescription().setEnabled(false);
         chart.setTouchEnabled(true);
@@ -186,34 +169,6 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         chart.getAxisLeft().setDrawGridLines(false);
         chart.getAxisRight().setDrawGridLines(false);
         chart.getLegend().setEnabled(false);///라벨이름 숨기기
-
-        /*ca-app-pub-1350498864943165/3398973741 real*/
-        /*ca-app-pub-3940256099942544/2247696110 fake*/
-
-        AdLoader adLoader = new AdLoader.Builder(getActivity(), "ca-app-pub-3940256099942544/2247696110")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
-                    @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        // Show the ad.
-
-                        ad_card.setVisibility(View.VISIBLE);
-                        TemplateView template2 = v.findViewById(R.id.my_template2);
-                        template2.setNativeAd(unifiedNativeAd);
-                    }
-                })
-                .withAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(int errorCode) {
-                        // Handle the failure by logging, altering the UI, and so on.
-                    }
-                })
-                .withNativeAdOptions(new NativeAdOptions.Builder()
-                        // Methods in the NativeAdOptions.Builder class can be
-                        // used here to specify individual options settings.
-                        .build())
-                .build();
-        adLoader.loadAds(new AdRequest.Builder().build(), 3);
-
 
         return v;
     }
@@ -298,9 +253,4 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
             return xLabel.get((int) value);
         }
     }
-    /*    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //AdLoader 이쪽에 넣어야 하는거같은데 이유 찾아봐야할듯 프래그먼트 생명주기
-    }*/
 }

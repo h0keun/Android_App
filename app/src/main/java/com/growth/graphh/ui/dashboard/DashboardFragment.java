@@ -17,7 +17,6 @@ import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -31,10 +30,7 @@ public class DashboardFragment extends Fragment {
 
     TextView dateYes, textView10, textView11, text_set3, text_set4;
     ImageView famous_img;
-    String go2 = null;
-    String go3 = null;
-    String str2 = null;
-    String str3 = null;
+    String go2, go3, str2, str3 = null;
     String famous;
     CardView ads_card;
 
@@ -175,5 +171,4 @@ public class DashboardFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //AdLoader 이쪽에 넣어야 하는거같은데 이유 찾아봐야할듯 프래그먼트 생명주기
     }*/
-
 }

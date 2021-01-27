@@ -136,7 +136,7 @@
                         android:textSize="15sp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:text="나의 다짐!"
+                        android:text="나의 다짐! ('일정' 에서 작성해주세요)"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"></TextView>
                     <ImageView

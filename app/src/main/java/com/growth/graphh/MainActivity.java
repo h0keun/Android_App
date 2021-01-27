@@ -15,7 +15,6 @@ import com.growth.graphh.ui.dashboard.DashboardFragment;
 import com.growth.graphh.ui.graph.graph;
 import com.growth.graphh.ui.home.HomeFragment;
 import com.growth.graphh.ui.notifications.NotificationsFragment;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -30,9 +29,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public SharedPreferences pref_start;
-    long day_first;
-    long day_count;
-    long count;
+    long day_first, day_count, count;
     int k_count;
     final Fragment fragment1 = new HomeFragment();
     final Fragment fragment2 = new DashboardFragment();
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         editor_day.putInt("key_day", k_count);
         editor_day.commit();
 
-        /*BottomNavigationView navView = findViewById(R.id.nav_view);
+        /*BottomNavigationView navView = findViewById(R.id.nav_view); //프래그먼트 매니져 설정전에 기존에 존재하던것
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -139,7 +136,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        fm.beginTransaction().hide(active).show(fragment1).commit();
+                        fm.beginTransaction().hide(active).detach(fragment3).show(fragment1).commit();
+                        //작성한 계획과, 다짐이 오늘탭에 바로 적용돼서 보여지기 위해 이곳에서 오늘탭 detach 함
+                        //(attach/detach 는 replace 와 다르게 프래그먼트 메니져상에서 다른걸 다지우고 대체하지 않음)
                         active = fragment1;
                         return true;
 
@@ -149,12 +148,14 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navigation_notifications:
-                        fm.beginTransaction().hide(active).show(fragment3).commit();
+                        fm.beginTransaction().hide(active).attach(fragment3).show(fragment3).commit();
+                        //일정탭애서 저장한 내용 보이기위해 detach 했다가 이곳에서 attach 함
                         active = fragment3;
                         return true;
 
                     case R.id.navigation_graph:
-                        fm.beginTransaction().hide(active).show(fragment4).commit();
+                        fm.beginTransaction().hide(active).detach(fragment4).attach(fragment4).show(fragment4).commit();
+                        //그래프 그리는 애니매이션 보여주기위함 + 오늘탭에서 평점 매겼을때 그래프에 바로 적용되서 보이기 위함
                         active = fragment4;
                         return true;
                 }
@@ -163,7 +164,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) { //화면전환이나 테마변경시 recreate로 엑티비티 중복되는것 막기위해 그냥 액티비티 재실행
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        //화면전환이나 테마변경시 recreate 로 엑티비티 중복되는것 막기위해 그냥 액티비티 재실행
         super.onConfigurationChanged(newConfig);
         int currentNightMode = newConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
@@ -179,19 +181,19 @@ public class MainActivity extends AppCompatActivity {
 }
 
 // 개선헤야할 점
-// 1. 기존에 NavController에서 bottomnavigation 클릭시 프래그먼트 replace때문에 매번 광고요청을 해서 앱이 느려졌음.
-// >> 프래그먼트 add,hide로 앱이 느려지는것 방지함
+// 1. 기존에 NavController 에서 bottom navigation 클릭시 프래그먼트 replace 때문에 매번 광고요청을 해서 앱이 느려졌음.
+// >> 프래그먼트 add,hide 로 앱이 느려지는것 방지함
 
-// 2. 프래그먼트 add,hide로 광고리퀘스트를 막고 앱이 느려지는것 막았으나 화면전환이나 테마변경시 recreate로 액티비티가 중첩되었음.
-// >> configChanges를 통해 화면전환시에 액티비티 중첩을 막았지만, 테마변경이 안돼서 액티비티 재실행으로 화전전환시에도 동일하게 적용함
-// >> 화면회전은 이대로 적용하고 테마변경시 recreate막는거는 다른 방법 있는듯함
+// 2. 프래그먼트 add,hide 로 광고리퀘스트를 막고 앱이 느려지는것 막았으나 화면전환이나 테마변경시 recreate 로 액티비티가 중첩되었음.
+// >> configChanges 를 통해 화면전환시에 액티비티 중첩을 막았지만, 테마변경또한 막혀서 그냥 액티비티 재실행
+// >> 화면회전은 configChanges 적용하고 테마변경시 recreate 막는거는 다른 방법 있는듯함
 
-// 3. 오늘탭에서 평점매기고 저장하면 그래프가 변해야하는데 프래그먼트 add,hide로 바뀌어서 그래프에 적용되는게 바로안보이고 재실행 해야 적용되서 보임
-// >> 마찬가지로 저장누르면 액티비티 재 시작으로 구성함
+// 3. 오늘탭에서 평점매기고 저장하면 그래프가 변해야하는데 프래그먼트 add,hide 로 바뀌어서 그래프에 적용되는게 바로안보이고 재실행 해야 적용되서 보임
+// >> detach,attach 시킴 + 일정탭에서 저장한 내용 오늘탭에 바로 안보이는것도 마찬가지로 detach,attach 시킴
 
-// 4. 무슨경우인지 모르겠으만 어떤경우에는 앱 재실행시 프래그먼트 겹쳐서보임//엑티비티 스텍계속 쌓여서 생기는 문제인듯
-// >>FLAG_ACTIVITY_CLEAR_TASK 랑, clearTaskOnLaunch="true" 적용했으나 제대로 작동하는지 확인 필요함
+// 4. 무슨경우인지 모르겠으만 어떤경우에는(일정시간지난후) 앱 재실행시 프래그먼트 겹쳐서보임//엑티비티 스텍계속 쌓여서 생기는 문제인듯
+// >> FLAG_ACTIVITY_CLEAR_TASK 랑, clearTaskOnLaunch="true" 적용했으나 제대로 작동하는지 확인 필요함
+// >> noHistory 설정두어서 모든경우에서 올클리어시킴
 
-// 찾은 문제들 모두 엑티비티 재시작으로 해결한거라 불안정함. 스택관리,생명주기 등등 고려할게 많은거같음
-// 기존에 navController 사용하면 프래그먼트 replace라 광고 리퀴스트때문에 앱 느려지는것 말고 문제가 하나도 없음
-// 프래그먼트 replace로 두고 뷰모델 활용하는 방안 고려해 볼것
+// 기존에 navController 사용하면 프래그먼트 replace 라 광고 리퀴스트때문에 앱 느려지는것 말고 문제가 하나도 없음
+// 프래그먼트 replace 로 두고 뷰모델 활용하는 방안 고려해 볼것

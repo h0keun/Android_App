@@ -105,22 +105,6 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/ad_card"
-                    android:visibility="gone"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp">
-                    <com.google.android.ads.nativetemplates.TemplateView
-                        android:id="@+id/my_template2"
-                        app:gnt_template_type="@layout/gnt_small_template_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
