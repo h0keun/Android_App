@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BE BETTER - test</string>
+    <string name="app_name">BE BETTER</string>
     <string name="title_home">일정</string>
     <string name="title_dashboard">어제</string>
     <string name="title_notifications">오늘</string>
