@@ -35,7 +35,8 @@ printf("code Block \n");
 4. Bottomnavigation을 이용하여 MainActivity 1개에 Fragment 4개가 연결된 방식으로 구성하였다.
 >+ Fragment_1(일정) 에서는 calendarView를 통해 달력을 보여주고 onSelectedDayChange와 FileInputStream을 통해  
 "2020년 02월 01일.txt"와 같은 정해진 형식으로 파일을 저장하였다.
->+ Fragment_2(어제)
+>+ Fragment_2(어제) 에서는 SimpleDateFormat을 "yyyy년 mm월 dd일" 처럼 일정탭에서 저장한 파일명과 동일한 형식으로 출력하고  
+Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는 파일명을 읽어오도록 하였다.
 >+ Fragment_3(오늘)
 >+ Fragment_4(성장그래프)
 
