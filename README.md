@@ -1,5 +1,5 @@
 # My_First_App - 'BE BETTER'
-[Google Play Store](https://play.google.com/store/apps/details?id=com.growth.graphh)
+플레이스토어에서 확인하기 [Google Play Store](https://play.google.com/store/apps/details?id=com.growth.graphh)
 
 ## 소개
 'BE BETTER'은 자기관리를 돕기위한 앱이다.  
