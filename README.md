@@ -82,6 +82,12 @@ pref_start = getSharedPreferences("pref_start", MODE_PRIVATE);
         editor_day.commit();
  ```
 3. splash테마를 지정하여 앱 실행시 제일먼저 화면에 나오도록 하였다.
+```JAVA
+    protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Graphh);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ```
 4. Bottomnavigation을 이용하여 MainActivity 1개에 Fragment 4개가 연결된 방식으로 구성하였다.
 >+ Fragment_1(일정) 에서는 calendarView를 통해 달력을 보여주고 onSelectedDayChange와 FileInputStream을 통해  
 "2020년 02월 01일.txt"와 같은 정해진 형식으로 파일을 저장하였다.
