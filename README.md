@@ -30,7 +30,7 @@ pref_start = getSharedPreferences("pref_start", MODE_PRIVATE);
         boolean isFirstRun = pref_start.getBoolean("isFirstRun", true);
         if (isFirstRun == true) {
             ...
-            실행날짜 SharedPreferences로 저장
+            실행날짜 day_first를 millis로 변환하여 SharedPreferences로 저장
             ...
             pref_start.edit().putBoolean("isFirstRun", false).apply();
         }
@@ -39,7 +39,7 @@ pref_start = getSharedPreferences("pref_start", MODE_PRIVATE);
  이를통해 하루가 지날때마다 그래프의 x축이 증가하고 그래프를 그린지 며칠이 되었는지를 표시했다.
   ``` JAVA
 ...   
-day_count = counting.getTimeInMillis() / 86400000; //앱 실행하는 날짜(최초 실행날짜 아님)
+day_count = counting.getTimeInMillis() / 86400000; //앱 실행하는 날짜 millis단위로 변환(최초 실행날짜 아님)
 ...
 count = day_count - day_first + 1; // 앱 실행하는 오늘날짜 - 앱 최초 처음 실행한 날짜 = d-day
 ```
@@ -59,19 +59,20 @@ Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는
 사용자에게 보여질 명언은 assets폴더에 저장되어있는 파일을 BufferedReader을 통해 불러왔으며 readLine();  
 을 통해 해당날짜에 해당하는 줄을 읽어오도록 하였다.
 ```JAVA
+is = am.open("famous_saying"); //assets폴더의 파일명
 BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            for (int i = 1; i < day_famous; i++) {
+            for (int i = 1; i < day_famous; i++) { //day_famous는 SimpleDateFormat에서 받은 날짜(dd)
                 br.readLine();
             }
 ```
 >+ Fragment_3(오늘) 에서는 위와 동일한 방법으로 오늘날짜에 해당하는 파일명을 읽도록 하였고,  
 그날의 메시지는 SimpleDateFormat을 위와는 다른형태(ex)"yyyy년mm월dd일")로 저장하여 일정과 메시지가 중복되지 않도록 하였다.  
 그날의 평점은 RatingBar를 통해 별의 갯수를 읽어서 오늘이 해당하는날짜(x축)의 값(y축)이 변하도록 하였다.
-또한 그날그날의 평점이 배열로 저장되어 그래프를 그려야 하기 때문에 토큰을 이용해 값을 구분짓고 저장하였다.
+또한 그날그날의 평점(=u)이 배열로 저장되어 그래프를 그려야 하기 때문에 토큰을 이용해 값을 구분짓고 저장하였다.
 ```JAVA
 SharedPreferences prefs = getActivity().getSharedPreferences("prefs", MODE_PRIVATE);
         ss = prefs.getString("name", "");
-        //평점을 배열로 저장하기 위함, 그래프 그릴 때 배열값이 필요, 토큰을 이용해 배열값을 구분짓고 저장함
+        //u를 배열로 저장하기 위함, 그래프 그릴 때 배열값이 필요, 토큰을 이용해 배열값을 구분짓고 저장함
         StringTokenizer st = new StringTokenizer(ss, ",");
         while (st.hasMoreTokens()) {
             list.add(Float.parseFloat(st.nextToken()));
@@ -89,7 +90,29 @@ SharedPreferences prefs = getActivity().getSharedPreferences("prefs", MODE_PRIVA
 ```
 >+ Fragment_4(성장그래프) 에서는 이전탭들에서 작성한 정보를 그래프를 통해 보여지는 공간이다.  
 그래프는 오픈소스인 [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)를 통해 그렸고,  
-DatePickerDialog를 통해 원하는 날짜에대한 정보(계획한 일, 나에게남긴 메시지)를 확인할 수 있게 하였다.
+DatePickerDialog를 통해 원하는 날짜에대한 정보(계획한 일, 나에게남긴 메시지)를 확인할 수 있게 하였다.  
+일정탭에서 저장한 d-day를 통해 x축의 갯수를 지정하였고 오늘탭에서 저장한 배열값을 뿌려줌으로써 그렸다.
+```JAVA
+...
+ArrayList<Entry> values = new ArrayList<>();
+       ...
+       for (int i = 2; i <k_count +1 ; i++) {
+           values.add(new Entry(i, xtx.get(k_count-i))); //오늘탭에서 저장한 배열을 읽는 부분
+       }
+       values.add(new Entry(k_count+1,u)); //오늘에 해당하는 그래프값(변화되는 u값이 보여진다.)
+       ...
+       ...
+       final ArrayList<String> xLabel = new ArrayList<>(); //x축 라벨설정
+       calendar.add(calendar.DATE, -(k_count) - 2);
+       for (int j = 0; j <= k_count + 1; j++) {
+           calendar.add(calendar.DAY_OF_YEAR, 1);
+           Date date = calendar.getTime();
+           String txtDate = mFormat.format(date);
+           xLabel.add(txtDate);
+       }
+       xLabel.set(k_count + 1, "오늘");
+       return xLabel.get((int) value);
+```        
 
 
 ## 스크린샷
