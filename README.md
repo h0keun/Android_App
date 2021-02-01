@@ -53,7 +53,36 @@ protected void onCreate(Bundle savedInstanceState) {
 4. Bottomnavigation을 이용하여 MainActivity 1개에 Fragment 4개가 연결된 방식으로 구성하였다.
 >+ Fragment_1(일정) 에서는 calendarView를 통해 달력을 보여주고 onSelectedDayChange와 FileInputStream을 통해  
 "2020년 02월 01일.txt"와 같은 정해진 형식으로 파일을 저장하였다.
+```JAVA
+calendarView.setOnDateChangeListener(...{//달력의 날짜를 클릭하였을 때 선택한 날짜를 감지
+    @Override
+    public void onSelectedDayChange(...){
+        ...
+        diaryTextView.setText(String.format("%d년 %d월 %d일",year,month+1,dayOfMonth));
+        ...
+        checkDay(year,month,dayOfMonth);
+    }
+});
 
+...
+
+public void checkDay(int cYear,int cMonth,int cDay){//선택한 날짜를 파일명으로 생성하기 위함
+    fname=""+cYear+"년 "+(cMonth+1)+"월 "+cDay+"일.txt";//저장할 파일 이름설정
+    FileInputStream fis=null;
+    try{
+        fis=getActivity().openFileInput(fname);
+        byte[] fileData=new byte[fis.available()];
+        fis.read(fileData);
+        fis.close();
+        str=new String(fileData);
+        ...
+     }catch (Exception e){
+         e.printStackTrace();
+     }
+ }
+ 
+...
+```
 >+ Fragment_2(어제) 에서는 SimpleDateFormat을 "yyyy년 mm월 dd일" 처럼 일정탭에서 저장한 파일명과 동일한 형식으로 출력하고  
 Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는 파일명을 읽어오도록 하였다.  
 사용자에게 보여질 명언은 assets폴더에 저장되어있는 파일을 BufferedReader을 통해 불러왔으며 readLine();  
