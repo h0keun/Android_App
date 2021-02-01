@@ -53,6 +53,7 @@ protected void onCreate(Bundle savedInstanceState) {
 4. Bottomnavigation을 이용하여 MainActivity 1개에 Fragment 4개가 연결된 방식으로 구성하였다.
 >+ Fragment_1(일정) 에서는 calendarView를 통해 달력을 보여주고 onSelectedDayChange와 FileInputStream을 통해  
 "2020년 02월 01일.txt"와 같은 정해진 형식으로 파일을 저장하였다.
+
 >+ Fragment_2(어제) 에서는 SimpleDateFormat을 "yyyy년 mm월 dd일" 처럼 일정탭에서 저장한 파일명과 동일한 형식으로 출력하고  
 Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는 파일명을 읽어오도록 하였다.  
 사용자에게 보여질 명언은 assets폴더에 저장되어있는 파일을 BufferedReader을 통해 불러왔으며 readLine();  
@@ -66,7 +67,26 @@ BufferedReader br = new BufferedReader(new InputStreamReader(is));
 >+ Fragment_3(오늘) 에서는 위와 동일한 방법으로 오늘날짜에 해당하는 파일명을 읽도록 하였고,  
 그날의 메시지는 SimpleDateFormat을 위와는 다른형태(ex)"yyyy년mm월dd일")로 저장하여 일정과 메시지가 중복되지 않도록 하였다.  
 그날의 평점은 RatingBar를 통해 별의 갯수를 읽어서 오늘이 해당하는날짜(x축)의 값(y축)이 변하도록 하였다.
-
+또한 그날그날의 평점이 배열로 저장되어 그래프를 그려야 하기 때문에 토큰을 이용해 값을 구분짓고 저장하였다.
+```JAVA
+SharedPreferences prefs = getActivity().getSharedPreferences("prefs", MODE_PRIVATE);
+        ss = prefs.getString("name", "");
+        //평점을 배열로 저장하기 위함, 그래프 그릴 때 배열값이 필요, 토큰을 이용해 배열값을 구분짓고 저장함
+        StringTokenizer st = new StringTokenizer(ss, ",");
+        while (st.hasMoreTokens()) {
+            list.add(Float.parseFloat(st.nextToken()));
+        } 
+        ...
+        ...
+        list.add(0, u);
+        ss = "";
+        for (Float i : list) {
+            ss += i + ",";
+        }
+        SharedPreferences.Editor editors = prefs.edit();
+        editors.putString("name", ss);
+        editors.commit();
+```
 >+ Fragment_4(성장그래프) 에서는 이전탭들에서 작성한 정보를 그래프를 통해 보여지는 공간이다.  
 그래프는 오픈소스인 [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)를 통해 그렸고,  
 DatePickerDialog를 통해 원하는 날짜에대한 정보(계획한 일, 나에게남긴 메시지)를 확인할 수 있게 하였다.
