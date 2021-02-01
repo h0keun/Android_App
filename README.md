@@ -40,7 +40,7 @@ Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는
 사용자에게 보여질 명언은 assets폴더에 저장되어있는 파일을 BufferedReader을 통해 불러왔으며 readLine();  
 을 통해 해당날짜에 해당하는 줄을 읽어오도록 하였다.
 >+ Fragment_3(오늘) 에서는 위와 동일한 방법으로 오늘날짜에 해당하는 파일명을 읽도록 하였고,  
-그날의 메시지는 SimpleDateFormat을 위와는 다른형태 ( ex)"yyyy년mm월dd일" )로 저장하여 일정과 메시지가 중복되지 않도록 하였다.  
+그날의 메시지는 SimpleDateFormat을 위와는 다른형태(ex)"yyyy년mm월dd일")로 저장하여 일정과 메시지가 중복되지 않도록 하였다.  
 그날의 평점은 RatingBar를 통해 별의 갯수를 읽어서 오늘이 해당하는날짜(x축)의 값(y축)이 변하도록 하였다.
 >+ Fragment_4(성장그래프)
 
