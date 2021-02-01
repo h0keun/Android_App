@@ -25,7 +25,7 @@
 ## 기능설명
 
 ## 스크린샷
-<img src="https://user-images.githubusercontent.com/63087903/106424399-7463a180-64a5-11eb-8e07-f819d2736a03.jpg" width="512" height="1024">
+<img src="https://user-images.githubusercontent.com/63087903/106424399-7463a180-64a5-11eb-8e07-f819d2736a03.jpg" width="240" height="500">
 ![1_dark](https://user-images.githubusercontent.com/63087903/106424406-775e9200-64a5-11eb-88e7-941fda0bc060.jpg)
 ![2_light](https://user-images.githubusercontent.com/63087903/106424411-7af21900-64a5-11eb-9d60-e81681599926.jpg)
 ![2_dark](https://user-images.githubusercontent.com/63087903/106424415-7c234600-64a5-11eb-9693-cd4dc3d70a21.jpg)
