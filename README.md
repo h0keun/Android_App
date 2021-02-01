@@ -50,6 +50,8 @@ Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는
 DatePickerDialog를 통해 원하는 날짜에대한 정보(계획한 일, 나에게남긴 메시지)를 확인할 수 있게 하였다.  
 일정탭에서 저장한 d-day를 통해 x축이 날마다 증가하도록 하였고 오늘탭에서 저장한 배열값을 y축에 뿌려줌으로써 그래프를 그렸다.
 
+5. Firebase Cloud Messasing 서비스를 통해 사용자에게 푸시알람을 보냄으로써 앱 참여도를 높였다.
+
 ## 스크린샷
 <img src="https://user-images.githubusercontent.com/63087903/106449562-70e11200-64c7-11eb-9abd-e2adf21e459c.jpg" width="180" height="400"> <img src="https://user-images.githubusercontent.com/63087903/106424399-7463a180-64a5-11eb-8e07-f819d2736a03.jpg" width="180" height="400"> <img src="https://user-images.githubusercontent.com/63087903/106424411-7af21900-64a5-11eb-9d60-e81681599926.jpg" width="180" height="400"> <img src="https://user-images.githubusercontent.com/63087903/106424419-7ded0980-64a5-11eb-8c97-3e4b4ff21880.jpg" width="180" height="400"> <img src="https://user-images.githubusercontent.com/63087903/106424428-81809080-64a5-11eb-95c8-8187ead22b9c.jpg" width="180" height="400">
 
