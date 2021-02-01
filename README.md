@@ -48,7 +48,7 @@ Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는
 >+ Fragment_4(성장그래프) 에서는 이전탭들에서 작성한 정보를 그래프를 통해 보여지는 공간이다.  
 그래프는 오픈소스인 [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)를 통해 그렸고,  
 DatePickerDialog를 통해 원하는 날짜에대한 정보(계획한 일, 나에게남긴 메시지)를 확인할 수 있게 하였다.  
-일정탭에서 저장한 d-day를 통해 x축의 갯수를 지정하였고 오늘탭에서 저장한 배열값을 뿌려줌으로써 그렸다.
+일정탭에서 저장한 d-day를 통해 x축이 날마다 증가하도록 하였고 오늘탭에서 저장한 배열값을 y축에 뿌려줌으로써 그래프를 그렸다.
 
 
 ## 스크린샷
