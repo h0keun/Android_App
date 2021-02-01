@@ -37,8 +37,8 @@
 
 >+ Fragment_2(어제) 에서는 SimpleDateFormat을 "yyyy년 mm월 dd일" 처럼 일정탭에서 저장한 파일명과 동일한 형식으로 출력하고  
 Calendar.getInstance();에서 Date를 -1 하여 어제의 날짜에 해당하는 파일명을 읽어오도록 하였다.  
-사용자에게 보여질 명언은 assets폴더에 저장되어있는 파일을 BufferedReader을 통해 불러왔으며 readLine();  
-을 통해 해당날짜에 해당하는 줄을 읽어오도록 하였다.
+사용자에게 보여질 명언은 assets폴더에 저장되어있는 파일을 불러왔으며 BufferedReader 와 readLine();을 통해  
+해당날짜에 해당하는 파일의 줄을 읽어오도록 하였다.(ex)21일 > 21번째줄)
 
 >+ Fragment_3(오늘) 에서는 위와 동일한 방법으로 오늘날짜에 해당하는 파일명을 읽도록 하였고,  
 그날의 메시지는 SimpleDateFormat을 위와는 다른형태(ex)"yyyy년mm월dd일")로 저장하여 일정과 메시지가 중복되지 않도록 하였다.  
