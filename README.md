@@ -27,59 +27,21 @@
  최초실행날짜 저장 이후에 임의의 변수를 false로 저장하여, 이후의 실행시 if문을 다시 읽지 않도록 하였다.  
  ``` JAVA
 pref_start = getSharedPreferences("pref_start", MODE_PRIVATE);
-        //앱 처음 실행했을 때 1번만 감지하기위해 ifFirstRv un true로 두고 실행
-
         boolean isFirstRun = pref_start.getBoolean("isFirstRun", true);
         if (isFirstRun == true) {
-
-            Date start_day = new Date();
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy", Locale.getDefault());
-            SimpleDateFormat sdf2 = new SimpleDateFormat("M", Locale.getDefault());
-            SimpleDateFormat sdf3 = new SimpleDateFormat("d", Locale.getDefault());
-
-            int year_st = Integer.parseInt(sdf1.format(start_day));
-            int month_st = Integer.parseInt(sdf2.format(start_day));
-            int day_st = Integer.parseInt(sdf3.format(start_day));
-
-            Calendar first_day = new GregorianCalendar(year_st, month_st, day_st);
-            day_first = first_day.getTimeInMillis() / 86400000;
-            // 앱 최초로 한번 실행한 날짜 초로 반환
-            //( 1일의 값(86400000 = 24시간 * 60분 * 60초 * 1000(1초값) ) )
-
-            SharedPreferences pref_first = getSharedPreferences("pref_first", MODE_PRIVATE);
-            SharedPreferences.Editor editor_first = pref_first.edit();
-            editor_first.putLong("first", day_first);
-            editor_first.commit();
-
+            ...
+            실행날짜 SharedPreferences로 저장
+            ...
             pref_start.edit().putBoolean("isFirstRun", false).apply();
-            //처음만 true 그다음부터는 false 바꾸는 동작
         }
-
 ```
 2. 저장된 최초날짜와 앱 실행시의 날짜를 millis 로 반환하여 두 날짜간의 차를 계산하고  
  이를통해 하루가 지날때마다 그래프의 x축이 증가하고 그래프를 그린지 며칠이 되었는지를 표시했다.
   ``` JAVA
- SharedPreferences pref_first = getSharedPreferences("pref_first", MODE_PRIVATE);
-        day_first = pref_first.getLong("first", 0); //저장한 앱 최초실행날짜 불러오기
-
-        Date count_day = new Date();
-        SimpleDateFormat sdf11 = new SimpleDateFormat("yyyy", Locale.getDefault());
-        SimpleDateFormat sdf22 = new SimpleDateFormat("M", Locale.getDefault());
-        SimpleDateFormat sdf33 = new SimpleDateFormat("d", Locale.getDefault());
-
-        int year_cd = Integer.parseInt(sdf11.format(count_day));
-        int month_cd = Integer.parseInt(sdf22.format(count_day));
-        int day_cd = Integer.parseInt(sdf33.format(count_day));
-        Calendar counting = new GregorianCalendar(year_cd, month_cd, day_cd);
+        ...   
         day_count = counting.getTimeInMillis() / 86400000; //앱 실행하는 날짜(최초 실행날짜 아님)
-
+        ...
         count = day_count - day_first + 1; // 앱 실행하는 오늘날짜 - 앱 최초 처음 실행한 날짜 = d-day
-
-        k_count = (int) count; // int k 로 형변환
-        SharedPreferences pref_day = getSharedPreferences("pref_day", MODE_PRIVATE);
-        SharedPreferences.Editor editor_day = pref_day.edit();
-        editor_day.putInt("key_day", k_count);
-        editor_day.commit();
  ```
 3. splash테마를 지정하여 앱 실행시 제일먼저 화면에 나오도록 하였다.
 ```JAVA
