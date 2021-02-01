@@ -33,7 +33,11 @@ printf("code Block \n");
  이를통해 하루가 지날때마다 그래프의 x축이 증가하고 그래프를 그린지 며칠이 되었는지를 표시했다.
 3. splash테마를 지정하여 앱 실행시 제일먼저 화면에 나오도록 하였다.
 4. Bottomnavigation을 이용하여 MainActivity 1개에 Fragment 4개가 연결된 방식으로 구성하였다.
->+ Fragment_1(일정) 에서는 calendarView를 통해 달력을 보여주고 onSelectedDayChange와 FileInputStream을 통해  "2020년 02월 01일.txt"와 같은 정해진 형식으로 파일을 저장하였다.
+>+ Fragment_1(일정) 에서는 calendarView를 통해 달력을 보여주고 onSelectedDayChange와 FileInputStream을 통해  
+"2020년 02월 01일.txt"와 같은 정해진 형식으로 파일을 저장하였다.
+>+ Fragment_2(어제)
+>+ Fragment_3(오늘)
+>+ Fragment_4(성장그래프)
 
 
 ## 스크린샷
