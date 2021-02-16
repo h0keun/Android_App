@@ -67,3 +67,8 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+## 해결해야할 에러
+2일이상 앱실행을 한번도 하지 않았을 경우에 앱을 실행하게 되면, 앱이 강제종료되는 문제발생  
+이후 다시들어가면 문제없이 실행이 되기는 함.  
+날짜 count 하며 그래프 그리는데 문제가 있는듯 하다. 
