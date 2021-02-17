@@ -49,6 +49,8 @@ public class NotificationsFragment extends Fragment {
     public CalendarView calendarView2;
     ArrayList<Float> list = new ArrayList<>();
 
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -203,8 +205,29 @@ public class NotificationsFragment extends Fragment {
         while (st.hasMoreTokens()) {
             list.add(Float.parseFloat(st.nextToken()));
         }
+        while(k_count != k){
 
-        if(k_count > k){ // 하루가 지나서 d-day가 증가한 경우
+            list.add(0, u);
+            ss = "";
+            for (Float i : list) {
+                ss += i + ",";
+            }
+            SharedPreferences.Editor editors = prefs.edit();
+            editors.putString("name", ss);
+            editors.commit(); // 배열에 u 값 추가로 저장 k++를통해 아무작없이 없었을 경우도 저장이된다.
+
+            count_click =0;
+            SharedPreferences.Editor editor_c = pref_c.edit();
+            editor_c.putInt("key_c",count_click);
+            editor_c.commit();
+
+            k++;
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt("key2",k);
+            editor.commit();// d-day 증가한만큼 list.add해주어야하기 때문에 k++로 횟수를 맞춰주고 저장
+
+        }
+/*        if(k_count > k){ // 하루가 지나서 d-day가 증가한 경우
             calendarView2=v.findViewById(R.id.calendarView2);
             textView3=v.findViewById(R.id.textView3);
             text_set2=v.findViewById(R.id.text_set2);
@@ -245,7 +268,7 @@ public class NotificationsFragment extends Fragment {
             SharedPreferences.Editor editor = pref.edit();
             editor.putInt("key2",k);
             editor.commit();// d-day 증가한만큼 list.add해주어야하기 때문에 k++로 횟수를 맞춰주고 저장함
-        }
+        }*/
         /*Log.d("LOG_TAG",(int)k+"k 값은??");*/
         if(count_click >0){ //작성완료 버튼을 눌렀을 경우
             calendarView2=v.findViewById(R.id.calendarView2);
