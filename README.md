@@ -1,7 +1,7 @@
 # My_First_App - 'BE BETTER'
  [Google Play Store](https://play.google.com/store/apps/details?id=com.growth.graphh)  
- + 개발환경 : Android Studio, Java
- + 라이브러리 : Google material design, MPAndroidChart, firebase(FCM)
+ + 개발환경 : Android Studio, Java, git
+ + 라이브러리 : Google material design, MPAndroidChart, firebase(FCM) ..
 
 ## 소개
 'BE BETTER'은 자기관리를 돕기위한 앱이다.  
