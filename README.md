@@ -75,3 +75,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 + 패턴 적용해보기
 + 테스트코드 작성해보기
 + 리팩토링
++ 접근자, 변수 등
