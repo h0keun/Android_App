@@ -1,7 +1,7 @@
 # My_First_App - 'BE BETTER'
  [Google Play Store](https://play.google.com/store/apps/details?id=com.growth.graphh)  
  + 개발환경 : Android Studio, Java, git
- + 라이브러리 : Google material design, MPAndroidChart, firebase(FCM) ..
+ + 라이브러리 : Google material design, MPAndroidChart, firebase(FCM) ...  
 안드로이드 강좌들에대한 선 수강없이 맨땅에 해딩하는 느낌으로 만들었기 때문에 깔끔하지못하고 효율적이지 못함  
 조급해하지 말고 천천히 기초부터 
 
