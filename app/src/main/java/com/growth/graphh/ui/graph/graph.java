@@ -67,9 +67,9 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
         button_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new DatePickerFragment(); // creating DialogFragment which creates DatePickerDialog
-                newFragment.setTargetFragment(graph.this,0);  // Passing this fragment DatePickerFragment.
-                // As i figured out this is the best way to keep the reference to calling activity when using FRAGMENT.
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.setTargetFragment(graph.this,0);
+                
                 newFragment.show(getFragmentManager(), "datePicker");
             }
         });
@@ -175,7 +175,7 @@ public class graph extends Fragment implements DatePickerDialog.OnDateSetListene
     }
     @Override
     //DatePickerDialog에서 받아온 날짜 값을 StringBuilder을 통해 변수를 설정하고 저장한 파일을 읽어온다.
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) { // what should be done when a date is selected
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         StringBuilder sb = new StringBuilder().append(year).append("년").append(monthOfYear + 1).append("월").append(dayOfMonth).append("일");
         String formattedDate = sb.toString();
 
