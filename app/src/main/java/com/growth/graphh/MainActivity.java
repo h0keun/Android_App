@@ -108,16 +108,6 @@ public class MainActivity extends AppCompatActivity {
         editor_day.putInt("key_day", k_count);
         editor_day.commit();
 
-        /*BottomNavigationView navView = findViewById(R.id.nav_view); //프래그먼트 매니져 설정전에 기존에 존재하던것
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_graph)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);*/
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide(); //액션바 숨기기
         setupBottomNavigation();
@@ -194,6 +184,3 @@ public class MainActivity extends AppCompatActivity {
 // 4. 무슨경우인지 모르겠으만 어떤경우에는(일정시간지난후) 앱 재실행시 프래그먼트 겹쳐서보임//엑티비티 스텍계속 쌓여서 생기는 문제인듯
 // >> FLAG_ACTIVITY_CLEAR_TASK 랑, clearTaskOnLaunch="true" 적용했으나 제대로 작동하는지 확인 필요함
 // >> noHistory 설정두어서 모든경우에서 올클리어시킴
-
-// 기존에 navController 사용하면 프래그먼트 replace 라 광고 리퀴스트때문에 앱 느려지는것 말고 문제가 하나도 없음
-// 프래그먼트 replace 로 두고 뷰모델 활용하는 방안 고려해 볼것

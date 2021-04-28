@@ -205,6 +205,7 @@ public class NotificationsFragment extends Fragment {
         while (st.hasMoreTokens()) {
             list.add(Float.parseFloat(st.nextToken()));
         }
+        
         while(k_count != k){
 
             list.add(0, u);
@@ -227,48 +228,6 @@ public class NotificationsFragment extends Fragment {
             editor.commit();// d-day 증가한만큼 list.add해주어야하기 때문에 k++로 횟수를 맞춰주고 저장
 
         }
-/*        if(k_count > k){ // 하루가 지나서 d-day가 증가한 경우
-            calendarView2=v.findViewById(R.id.calendarView2);
-            textView3=v.findViewById(R.id.textView3);
-            text_set2=v.findViewById(R.id.text_set2);
-            dateNow = (TextView) v.findViewById(R.id.dateNow);
-            rating_bar_sub=v.findViewById(R.id.rating_bar_sub);
-            rating_bar=v.findViewById(R.id.rating_bar);
-            rating_txt=v.findViewById(R.id.rating_txt);
-            contextEditText2=v.findViewById(R.id.contextEditText2);
-            contextText2=v.findViewById(R.id.contextText2);
-            cha_Btn2=v.findViewById(R.id.cha_Btn2);
-            day_end=v.findViewById(R.id.day_end);
-            sbtn=v.findViewById(R.id.sbtn);
-
-            contextEditText2.setVisibility(View.VISIBLE);
-            contextText2.setVisibility(View.GONE);
-            rating_bar.setVisibility(View.VISIBLE);
-            rating_bar_sub.setVisibility(View.GONE);
-            rating_txt.setVisibility(View.VISIBLE);
-            sbtn.setVisibility(View.VISIBLE);
-            cha_Btn2.setVisibility(View.INVISIBLE);
-            day_end.setVisibility(View.INVISIBLE);
-
-            list.add(0, u);
-            ss = "";
-            for (Float i : list) {
-                ss += i + ",";
-            }
-            SharedPreferences.Editor editors = prefs.edit();
-            editors.putString("name", ss);
-            editors.commit(); // 배열에 u 값 추가로 저장 k++를통해 아무작없이 없었을 경우도 저장이된다.
-
-            count_click =0;
-            SharedPreferences.Editor editor_c = pref_c.edit();
-            editor_c.putInt("key_c",count_click);
-            editor_c.commit(); //저장버튼 눌렀을때 바뀌었던 레이아웃을 원상복구 해준다.
-
-            k++;
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("key2",k);
-            editor.commit();// d-day 증가한만큼 list.add해주어야하기 때문에 k++로 횟수를 맞춰주고 저장함
-        }*/
         /*Log.d("LOG_TAG",(int)k+"k 값은??");*/
         if(count_click >0){ //작성완료 버튼을 눌렀을 경우
             calendarView2=v.findViewById(R.id.calendarView2);
