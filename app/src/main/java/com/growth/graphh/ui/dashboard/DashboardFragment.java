@@ -139,7 +139,7 @@ public class DashboardFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*ca-app-pub-1350498864943165/3398973741 real*/
+        
         /*ca-app-pub-3940256099942544/2247696110 fake*/
         AdLoader adLoader = new AdLoader.Builder(getContext(), "ca-app-pub-3940256099942544/2247696110")
                 .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
