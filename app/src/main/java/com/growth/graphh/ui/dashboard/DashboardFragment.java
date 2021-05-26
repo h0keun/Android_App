@@ -10,13 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.nativead.NativeAd;
 import com.growth.graphh.R;
 import com.google.android.ads.nativetemplates.TemplateView;
-import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.formats.NativeAdOptions;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -142,26 +144,28 @@ public class DashboardFragment extends Fragment {
 
         /*ca-app-pub-3940256099942544/2247696110 fake*/
         AdLoader adLoader = new AdLoader.Builder(getContext(), "ca-app-pub-3940256099942544/2247696110")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        // Show the ad.
+                    public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
                         ads_card.setVisibility(View.VISIBLE);
                         TemplateView template = v.findViewById(R.id.my_template);
-                        template.setNativeAd(unifiedNativeAd);
+                        template.setNativeAd(nativeAd);
                     }
                 })
                 .withAdListener(new AdListener() {
                     @Override
-                    public void onAdFailedToLoad(int errorCode) {
-                        // Handle the failure by logging, altering the UI, and so on.
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
+                    }
+
+                    @Override
+                    public void onAdClicked() {
+                        super.onAdClicked();
                     }
                 })
-                .withNativeAdOptions(new NativeAdOptions.Builder()
-                        // Methods in the NativeAdOptions.Builder class can be
-                        // used here to specify individual options settings.
-                        .build())
+
                 .build();
+
         adLoader.loadAds(new AdRequest.Builder().build(), 3);
 
         return v;
@@ -170,5 +174,6 @@ public class DashboardFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //AdLoader 이쪽에 넣어야 하는거같은데 이유 찾아봐야할듯 프래그먼트 생명주기
+        //애초에 프래그먼트 활동을 이쪽에 넣는게 좋음
     }*/
 }
