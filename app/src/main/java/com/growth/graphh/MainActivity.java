@@ -1,5 +1,6 @@
 package com.growth.graphh;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
     public SharedPreferences pref_start;
     long day_first, day_count, count;
     int k_count;
-    final Fragment fragment1 = new HomeFragment();
-    final Fragment fragment2 = new DashboardFragment();
-    final Fragment fragment3 = new NotificationsFragment();
-    final Fragment fragment4 = new graph();
-    final FragmentManager fm = getSupportFragmentManager();
+    Fragment fragment1 = new HomeFragment();
+    Fragment fragment2 = new DashboardFragment();
+    Fragment fragment3 = new NotificationsFragment();
+    Fragment fragment4 = new graph();
+    FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragment3;
 
     @Override
@@ -51,20 +53,20 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(@NotNull InitializationStatus initializationStatus) {
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
 
-        fm.beginTransaction().add(R.id.container, fragment3, "3").commit();//젤먼저 추가해줘야 함
-        fm.beginTransaction().add(R.id.container, fragment1, "1").hide(fragment1).commit();
-        fm.beginTransaction().add(R.id.container, fragment2, "2").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.container, fragment4, "4").hide(fragment4).commit();
+        fm.beginTransaction().add(R.id.container, fragment3).commit();//젤먼저 추가해줘야 함
+        fm.beginTransaction().add(R.id.container, fragment1).hide(fragment1).commit();
+        fm.beginTransaction().add(R.id.container, fragment2).hide(fragment2).commit();
+        fm.beginTransaction().add(R.id.container, fragment4).hide(fragment4).commit();
 
         pref_start = getSharedPreferences("pref_start", MODE_PRIVATE);
         //앱 처음 실행했을 때 1번만 감지하기위해 ifFirstRv un true로 두고 실행
 
         boolean isFirstRun = pref_start.getBoolean("isFirstRun", true);
-        if (isFirstRun == true) {
+        if (isFirstRun) {
 
             Date start_day = new Date();
             SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences pref_first = getSharedPreferences("pref_first", MODE_PRIVATE);
             SharedPreferences.Editor editor_first = pref_first.edit();
             editor_first.putLong("first", day_first);
-            editor_first.commit();
+            editor_first.apply();
 
             pref_start.edit().putBoolean("isFirstRun", false).apply();
             //처음만 true 그다음부터는 false 바꾸는 동작
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences pref_day = getSharedPreferences("pref_day", MODE_PRIVATE);
         SharedPreferences.Editor editor_day = pref_day.edit();
         editor_day.putInt("key_day", k_count);
-        editor_day.commit();
+        editor_day.apply();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide(); //액션바 숨기기
@@ -124,15 +126,17 @@ public class MainActivity extends AppCompatActivity {
         @ColorInt int color = typedValue.data;
         bottomNavigationView.setBackgroundColor(color);
         bottomNavigationView.setSelectedItemId(R.id.navigation_notifications);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @SuppressLint("NonConstantResourceId")
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NotNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        fm.beginTransaction().hide(active).detach(fragment3).show(fragment1).commit();
                         //작성한 계획과, 다짐이 오늘탭에 바로 적용돼서 보여지기 위해 이곳에서 오늘탭 detach 함
                         //(attach/detach 는 replace 와 다르게 프래그먼트 메니져상에서 다른걸 다지우고 대체하지 않음)
+                        fm.beginTransaction().hide(active).detach(fragment3).show(fragment1).commit();
                         active = fragment1;
+
                         return true;
 
                     case R.id.navigation_dashboard:
