@@ -1,6 +1,7 @@
 # 성장그래프 - 'BE BETTER'
  📌 [Google Play Store](https://play.google.com/store/apps/details?id=com.growth.graphh)  
  + 개발환경 : Android Studio, Java, git
+ + 개발기간 : 2020.12 ~ 2021.01
  + 라이브러리 : Google material design, MPAndroidChart, firebase(FCM) ...
  + 디자인 : 무료 이미지들을 활요하여 Pixlr E로 편집
 
@@ -57,12 +58,21 @@
 [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 
 ## 저작권
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+```
+   Copyright [2021] [HoKeun.LEE]
 
-http://www.apache.org/licenses/LICENSE-2.0
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+       http://www.apache.org/licenses/LICENSE-2.0
 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
 ## 개선하며 공부할 점
 기능구현에 급급해 놓친부분이 많다.
 + 패턴 적용해보기
