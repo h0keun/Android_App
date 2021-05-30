@@ -73,6 +73,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
+#### [20210-05-21] ads - nativetemplates
+: deprecated 부분 수정
+
 ## 개선하며 공부할 점
 + 접근자, 변수!! 나중에 수정하려고 보니 너무 지저분하다. 빨리 수정해야겟다
 + 모든 로직이 거의다 onCreate안에 있어서 분리좀 시켜줘야겟다
