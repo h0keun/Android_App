@@ -36,20 +36,18 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class NotificationsFragment extends Fragment {
 
-    String fname2,str,str6,str7,go=null;
+    String fname2,str,str6,str7,go = null;
     String ss, famous, remembertxt2;
     int count_click, k_count, k;
     float s, s_num, u;
-    private RatingBar rating_bar,rating_bar_sub;
+    RatingBar rating_bar,rating_bar_sub;
     TextView textView3,dateNow,rating_txt,text_set2,contextText2,text_set33, text_set44;
     EditText contextEditText2;
     Button cha_Btn2,sbtn;
     ImageView famous_imgg;
     ImageButton day_end;
-    public CalendarView calendarView2;
+    CalendarView calendarView2;
     ArrayList<Float> list = new ArrayList<>();
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

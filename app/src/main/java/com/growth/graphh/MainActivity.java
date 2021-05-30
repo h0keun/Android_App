@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MenuItem;
+
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -16,6 +17,7 @@ import com.growth.graphh.ui.dashboard.DashboardFragment;
 import com.growth.graphh.ui.graph.graph;
 import com.growth.graphh.ui.home.HomeFragment;
 import com.growth.graphh.ui.notifications.NotificationsFragment;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -33,7 +35,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    public SharedPreferences pref_start;
+    SharedPreferences pref_start;
     long day_first, day_count, count;
     int k_count;
     Fragment fragment1 = new HomeFragment();
@@ -117,16 +119,19 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide(); //액션바 숨기기
         setupBottomNavigation();
     }
-    private void setupBottomNavigation(){//프래그먼트 바뀔떄마다 애드몹 리퀘스트로 앱이 느려져서 add,hide 사용
 
-        BottomNavigationView bottomNavigationView =findViewById(R.id.bottomNavigationView);
+    private void setupBottomNavigation() {//프래그먼트 바뀔떄마다 애드몹 리퀘스트로 앱이 느려져서 add,hide 사용
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
         TypedValue typedValue = new TypedValue(); //테마별 바텀네비게이션 뷰 색상
         Resources.Theme theme = this.getTheme();
         theme.resolveAttribute(R.attr.tabBackground, typedValue, true);
         @ColorInt int color = typedValue.data;
         bottomNavigationView.setBackgroundColor(color);
         bottomNavigationView.setSelectedItemId(R.id.navigation_notifications);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NotNull MenuItem item) {
@@ -145,13 +150,13 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navigation_notifications:
-                        fm.beginTransaction().hide(active).attach(fragment3).show(fragment3).commit();
+                        fm.beginTransaction().hide(active).detach(fragment4).attach(fragment3).show(fragment3).commit();
                         //일정탭애서 저장한 내용 보이기위해 detach 했다가 이곳에서 attach 함
                         active = fragment3;
                         return true;
 
                     case R.id.navigation_graph:
-                        fm.beginTransaction().hide(active).detach(fragment4).attach(fragment4).show(fragment4).commit();
+                        fm.beginTransaction().hide(active).attach(fragment4).show(fragment4).commit();
                         //그래프 그리는 애니매이션 보여주기위함 + 오늘탭에서 평점 매겼을때 그래프에 바로 적용되서 보이기 위함
                         active = fragment4;
                         return true;
@@ -160,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         //화면전환이나 테마변경시 recreate 로 엑티비티 중복되는것 막기위해 그냥 액티비티 재실행
