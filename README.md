@@ -74,9 +74,17 @@
    limitations under the License.
 ```
 
-#### [20210-05-21] ads - nativetemplates
+#### [2021-05-21] ads - nativetemplates
 : deprecated 부분 수정
 
+#### [2021-05-30] Fragment - attach/detach
+: 기존에 fragmentTransaction 을 사용할 때, replace로 화면을 전환하게되면 매번 admob 네트워크 요청이 일어나서 버벅거리는 문제가 있었고,  
+ 이를 해결하기위해 add,hide,show,detach,attach 를 적절히 활용해서 네트워크요청은 앱 실행후 단 한번만 일어나도록 하면서, UI가 업데이트 되도록 했다.
+ 그런데 이번에 각종 업데이트들을 진행하고나서 보니 attach와 detach 부분이 작동하지 않았다.
+ Fragment4 에서 그래프 애니메이션효과를 주면서, 업데이트된 정보를 반영하기 위해 ```detach(fragment4).attach(fragment4) ``` 이런식으로 사용했었다.  
+ 뭐가 문제일까 계속 살펴보다 detach(fragment3)과 attach(fragment3)이 분리되어있는 부분은 잘 작동하는 것을 보고 위의것도 동일하게 분리시켜주었더니 잘 작동한다.
+ 왜 그런건지 이유는 : 
+ 
 ## 개선하며 공부할 점
 + 접근자, 변수!! 나중에 수정하려고 보니 너무 지저분하다. 빨리 수정해야겟다
 + 모든 로직이 거의다 onCreate안에 있어서 분리좀 시켜줘야겟다
