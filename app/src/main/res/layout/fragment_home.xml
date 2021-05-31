@@ -4,267 +4,295 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
-  >
+    tools:context=".ui.home.HomeFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="15dp"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="일정"
-            android:textSize="20sp"
-            android:textStyle="bold">
-
-        </TextView>
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
         android:orientation="vertical">
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp">
-
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </androidx.cardview.widget.CardView>
         <LinearLayout
-            android:id="@+id/remember"
-            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:scaleType="fitCenter"
-                android:layout_gravity="left"
-                android:background="@drawable/textstart3"                        >
-            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_home"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
-                <LinearLayout
-                    android:id="@+id/remember_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:visibility="invisible">
-                <EditText
-                    android:id="@+id/remember_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:hint="나의 다짐 작성하기"></EditText>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="right">
-                <ImageButton
-                    android:visibility="gone"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:background="@null"
-                    android:id="@+id/remember_save"
-                    android:src="@android:drawable/ic_input_add"
-                    android:scaleType="fitCenter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"></ImageButton>
-                    <ImageButton
-                        android:visibility="gone"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:background="@null"
-                        android:src="@android:drawable/ic_delete"
-                        android:scaleType="fitCenter"
-                        android:id="@+id/remember_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"></ImageButton>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/text_set"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="15sp"
-                    android:text="나의 다짐 작성하기(클릭해주세요)"
-                    android:visibility="visible"></TextView>
-            </FrameLayout>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/textend3"
-                android:layout_marginRight="20dp"
-                android:scaleType="fitCenter"
-                android:layout_gravity="right">
-            </ImageView>
         </LinearLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_gravity="center"
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp">
+            android:scrollbars="none">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <LinearLayout
+
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:paddingLeft="5dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp">
+
+                    <CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/remember"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:src="@android:drawable/ic_notification_overlay"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="20dp"
                         android:scaleType="fitCenter"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                    <TextView
-                        android:background="@color/colorBackground2"
-                        android:id="@+id/diaryTextView"
-                        android:text="날짜를 클릭하시고 일정을 추가해 주세요 "
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:singleLine="true"
-                        android:textSize="18sp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium">
-                         </TextView>
+                        android:src="@drawable/colon_start"
+                        tools:ignore="ContentDescription" />
 
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp">
+
+                        <LinearLayout
+                            android:id="@+id/remember_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <EditText
+                                android:id="@+id/remember_editText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:hint="@string/colon_text_home"
+                                tools:ignore="Autofill,TextFields" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:orientation="horizontal">
+
+                                <ImageButton
+                                    android:id="@+id/remember_save"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@null"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:scaleType="fitCenter"
+                                    android:src="@android:drawable/ic_input_add"
+                                    android:visibility="gone"
+                                    tools:ignore="ContentDescription" />
+
+                                <ImageButton
+                                    android:id="@+id/remember_back"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@null"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:scaleType="fitCenter"
+                                    android:src="@android:drawable/ic_delete"
+                                    android:visibility="gone"
+                                    tools:ignore="ContentDescription" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/remember_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/colon_text_home"
+                            android:textSize="15sp"
+                            android:visibility="visible" />
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="20dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/colon_end"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp">
-                <ImageView
-                    android:src="@android:drawable/ic_notification_overlay"
-                    android:scaleType="fitCenter"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    />
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:paddingRight="25dp">
-            <EditText
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:id="@+id/contextEditText"
-                android:hint="내용을 입력하세요"
-                android:background="@null"
-                android:visibility="invisible"/>
-            <TextView
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="140dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:id="@+id/textView2"
-                android:visibility="invisible"/>
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView4"
-                android:visibility="visible"></TextView>
-        </FrameLayout>
-            </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <FrameLayout
-            android:id="@+id/frame_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <Button
-                android:text="저장"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/save_Btn"
-                android:visibility="invisible"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-                <Button
-                    android:text="수정"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/cha_Btn"
-                    android:visibility="invisible"
-                    android:layout_weight="0.5"/>
-                <Button
-                    android:text="삭제"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/ic_notification_overlay"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/diaryTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/colorBackground2"
+                                android:paddingStart="5dp"
+                                android:singleLine="true"
+                                android:text="@string/home_text"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textSize="18sp"
+                                tools:ignore="RtlSymmetry" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/ic_notification_overlay"
+                                android:visibility="invisible"
+                                tools:ignore="ContentDescription" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:paddingEnd="25dp"
+                                tools:ignore="RtlSymmetry">
+
+                                <EditText
+                                    android:id="@+id/contextEditText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@null"
+                                    android:hint="@string/text_hint"
+                                    android:inputType="textMultiLine"
+                                    android:visibility="invisible"
+                                    tools:ignore="Autofill" />
+
+                                <TextView
+                                    android:id="@+id/showTextFiled"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:minHeight="140dp"
+                                    android:textSize="14sp"
+                                    android:visibility="invisible" />
+
+                                <TextView
+                                    android:id="@+id/hideTextFiled"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:visibility="visible" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <FrameLayout
+                    android:id="@+id/frame_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/del_Btn"
-                    android:visibility="invisible"
-                    android:layout_weight="0.5"></Button>
-            </LinearLayout>
-            <!--</LinearLayout>-->
-        </FrameLayout>
+                    android:layout_marginRight="5dp">
 
-    </LinearLayout>
-    </ScrollView>
+                    <Button
+                        android:id="@+id/save_Btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/save"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <Button
+                            android:id="@+id/cha_Btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:text="@string/edit"
+                            android:visibility="invisible"
+                            tools:ignore="ButtonStyle" />
+
+                        <Button
+                            android:id="@+id/del_Btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="0.5"
+                            android:text="@string/delete"
+                            android:visibility="invisible"
+                            tools:ignore="ButtonStyle" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

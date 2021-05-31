@@ -2,408 +2,442 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aaa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/aaa"
     tools:context=".ui.notifications.NotificationsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginRight="5dp"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="15dp"
+            android:orientation="horizontal"
             android:weightSum="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="오늘"
+                android:text="@string/title_notifications"
                 android:textSize="20sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/dateNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:gravity="right"
+                android:gravity="end"
                 android:textSize="20sp" />
         </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp">
-                <ImageView
-                    android:src="@android:drawable/presence_online"
-                    android:scaleType="fitCenter"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <TextView
-                    android:background="@color/colorBackground3"
-                    android:layout_width="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:paddingLeft="5dp"
-                    android:singleLine="true"
-                    android:text="계획한 일 "
-                    android:textSize="18sp"></TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp">
-                <ImageView
-                    android:src="@android:drawable/presence_online"
-                    android:scaleType="fitCenter"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    />
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/textView3"
-                android:textSize="14sp"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="110dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="25dp"></TextView>
-            </LinearLayout>
-        </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/presence_online"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/colorBackground3"
+                                android:paddingStart="5dp"
+                                android:singleLine="true"
+                                android:text="@string/today_plan"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/presence_online"
+                                android:visibility="invisible"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/today_plan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="25dp"
+                                android:layout_marginBottom="5dp"
+                                android:minHeight="110dp"
+                                android:paddingStart="5dp"
+                                android:textSize="14sp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/colon_start"
                         android:scaleType="fitCenter"
-                        android:layout_gravity="left"
-                       android:background="@drawable/textstart3"                        >
-                    </ImageView>
+                        tools:ignore="ContentDescription" />
+
                     <TextView
+                        android:id="@+id/remembered_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:id="@+id/text_set2"
-                        android:textSize="15sp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:text="나의 다짐! ('일정' 에서 작성해주세요)"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"></TextView>
+                        android:text="@string/colon_text_notification"
+                        android:textSize="15sp" />
+
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/textend3"
-                        android:layout_marginRight="20dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="20dp"
                         android:scaleType="fitCenter"
-                        android:layout_gravity="right">
-                    </ImageView>
+                        android:src="@drawable/colon_end"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
                     android:weightSum="1">
+
                     <ImageView
                         android:id="@+id/famous_imgg"
-                        android:layout_weight="0.1"
                         android:layout_width="110dp"
                         android:layout_height="110dp"
-                        android:scaleType="fitCenter">
-                    </ImageView>
+                        android:layout_weight="0.1"
+                        android:scaleType="fitCenter"
+                        tools:ignore="ContentDescription" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.9"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
-                            android:layout_gravity="left"
-                            android:gravity="left"
-                            android:textSize="12sp"
-                            android:text="텍스트위치"
-                            android:id="@+id/text_set33"
-                            android:textStyle="italic"
-                            android:layout_marginLeft="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        </TextView>
-                        <TextView
-                            android:id="@+id/text_set44"
+                            android:id="@+id/famous_Saying"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="10dp"
+                            android:gravity="start"
                             android:textSize="12sp"
                             android:textStyle="italic"
-                            android:text="텍스트위치"
-                            android:layout_gravity="right"
-                            android:gravity="right">
-                        </TextView>
+                            tools:text="텍스트위치" />
+
+                        <TextView
+                            android:id="@+id/famous_Who"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:gravity="end"
+                            android:textSize="12sp"
+                            android:textStyle="italic"
+                            tools:text="텍스트위치" />
                     </LinearLayout>
                 </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp">
-                <ImageView
-                    android:src="@android:drawable/presence_online"
-                    android:scaleType="fitCenter"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            <TextView
-                android:background="@color/colorBackground3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true"
-                android:text="나에게 남길 메시지 "
-                android:textSize="18sp"></TextView>
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="5dp"
-                android:paddingLeft="5dp">
-                <ImageView
-                    android:src="@android:drawable/presence_online"
-                    android:scaleType="fitCenter"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    />
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="25dp">
-        <EditText
-            android:layout_gravity="center"
-            android:id="@+id/contextEditText2"
-            android:inputType="textMultiLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dp"
-            android:hint="내용을 입력하세요"
-            android:visibility="visible"
-            android:background="@null"></EditText>
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:id="@+id/contextText2"
-                    android:textSize="14sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:minHeight="110dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@null"></TextView>
-                </FrameLayout>
-            </LinearLayout>
-        </LinearLayout>
-        </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/presence_online"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/colorBackground3"
+                                android:paddingStart="5dp"
+                                android:singleLine="true"
+                                android:text="@string/today_message"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/presence_online"
+                                android:visibility="invisible"
+                                tools:ignore="ContentDescription" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="25dp">
+
+                                <EditText
+                                    android:id="@+id/leaveMessage"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:background="@null"
+                                    android:hint="@string/text_hint"
+                                    android:inputType="textMultiLine"
+                                    android:minHeight="120dp"
+                                    android:visibility="visible"
+                                    tools:ignore="Autofill" />
+
+                                <TextView
+                                    android:id="@+id/leftMessage"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:background="@null"
+                                    android:minHeight="110dp"
+                                    android:textSize="14sp"
+                                    android:visibility="invisible" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp">
-                            <ImageView
-                                android:src="@android:drawable/presence_online"
-                                android:scaleType="fitCenter"
-                                android:layout_gravity="center"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                />
-                            <TextView
-                                android:background="@color/colorBackground3"
-                                android:id="@+id/txt2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="5dp"
-                                android:paddingLeft="5dp"
-                                android:singleLine="true"
-                                android:text="오늘하루의 평점 "
-                                android:textSize="18sp"></TextView>
-                        </LinearLayout>
-                        <FrameLayout
-                            android:layout_marginTop="15dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center">
+                            android:orientation="horizontal"
+                            android:paddingStart="5dp"
+                            tools:ignore="RtlSymmetry">
 
-                       <RatingBar
-                            android:id="@+id/rating_bar_sub"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@android:drawable/presence_online"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/colorBackground3"
+                                android:paddingStart="5dp"
+                                android:singleLine="true"
+                                android:text="@string/set_rating"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:isIndicator="true"
-                            android:visibility="invisible"
-                            android:numStars="5"
-                            android:rating="2.5"
-                            android:stepSize="0.5"></RatingBar>
-                        <RatingBar
-                            android:id="@+id/rating_bar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:isIndicator="false"
-                            android:visibility="visible"
-                            android:numStars="5"
-                            android:rating="2.5"
-                            android:stepSize="0.5"></RatingBar>
+                            android:layout_marginTop="15dp">
+
+                            <RatingBar
+                                android:id="@+id/rating_bar_sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:isIndicator="true"
+                                android:numStars="5"
+                                android:rating="2.5"
+                                android:stepSize="0.5"
+                                android:visibility="invisible" />
+
+                            <RatingBar
+                                android:id="@+id/rating_bar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:isIndicator="false"
+                                android:numStars="5"
+                                android:rating="2.5"
+                                android:stepSize="0.5"
+                                android:visibility="visible" />
                         </FrameLayout>
+
                         <TextView
                             android:id="@+id/rating_txt"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textSize="10sp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"></TextView>
+                            tools:ignore="SmallSp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+
                     <Button
-                        android:text="저장"
+                        android:id="@+id/saveButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/sbtn"
-                        android:visibility="visible"/>
+                        android:text="@string/save"
+                        android:visibility="visible" />
+
                     <LinearLayout
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        android:weightSum="1"
-                       >
-                    <Button
-                        android:text="다시 작성하기"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:id="@+id/cha_Btn2"
-                        android:visibility="invisible"/>
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <Button
+                            android:id="@+id/editButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:text="@string/edit"
+                            android:visibility="invisible" />
+
                         <ImageButton
-
-                            android:layout_weight="0.2"
-
-                            android:background="@null"
-                            android:src="@android:drawable/ic_menu_info_details"
-                            android:scaleType="fitCenter"
+                            android:id="@+id/dialogButton"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:id="@+id/day_end"
-                            android:visibility="invisible"></ImageButton>
+                            android:layout_weight="0.2"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            android:src="@android:drawable/ic_menu_info_details"
+                            android:visibility="invisible"
+                            tools:ignore="ContentDescription" />
                     </LinearLayout>
                 </FrameLayout>
-
-        <CalendarView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            android:id="@+id/calendarView2"></CalendarView>
-                   <!-- </LinearLayout>
-                    </LinearLayout>
-                </FrameLayout>-->
             </LinearLayout>
-
         </ScrollView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
