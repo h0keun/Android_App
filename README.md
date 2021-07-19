@@ -120,7 +120,34 @@
    
    🥕 위 방식이 깔끔한 방식이라 생각되지는 않아서 설계관점에서 다시 접근해야 하지 않을까? 싶음
 ```
+```KOTLIN
+4. release 모드에서 animation효과가 발생하지 않음
+   Fragment4의 MPChart 에 animate 효과를 적용하여 그래프가 그려지는 모습을 사용자에게 보여주고 싶었다.
+   디버그 모드에서는 잘 되던것이 앱을 배포하기위해 release 모드로 수정하였더니 에니메이션 효과가 일어나지 않았다.
+   
+   👉 내가사용한 오픈소스 라이브러리인 MPAndroidChart에 들어가서
+   Issue 탭을 살펴보니 나와 같은 문제를 겪은 사람들이 있었고, 그곳에서 가이드해준대로
+   proguard-rules.pro 에 다음을 적용하여 해결하였다.
+   
+   -dontwarn com.github.mikephil.**
+   -keep class com.github.mikephil.charting.animation.ChartAnimator{*;}
+```
+```KOTLIN
+5. MPAndroidChart 에서는 테마별 차트를 지원해 주지 않았던 문제
+  
+   👉 TypedValue를 사용하여 해결(구글링을 통해 찾았는데 추가적으로 알아볼 필요 있음!)
+   
+   * 코드 발췌
+   TypedValue typedValue = new TypedValue(); //그래프는 자동으로 테마가 적용되지 않아서 의도적으로 테마 적용
+   Resources.Theme theme = getContext().getTheme();
+   theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+   @ColorInt int color = typedValue.data;
+   set1.setColor(color); /// 테마별 선 색상
+   xAxis.setTextColor(color);//테마별 날짜 라벨 색상
+   set1.setCircleColor(color); // 차트의 points 점 색 설정
 
+   같은방식으로 bottomnavigation이 테마에따라 변하지 않던문제도 해결
+```
 #### [2021-05-21] ads - nativetemplates
 : deprecated 부분 수정
 
