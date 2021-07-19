@@ -101,10 +101,11 @@
    화면 전환시 매번 admob 네트워크 요청이 일어나서 버벅거리는 문제가 발생했다.
    
    👉 기존에 replace로 프래그먼트 화면을 전환하는 방식에서 
-   admob요청이 일어나는 프래그먼트를 따로 add 하여 show, hide 형태로 두어서 해결하였다.
+   admob요청이 일어나는 프래그먼트를 따로 add 하여 show, hide 를 사용하였으며,
+   이외에 다른 프래그먼트에서는 attach, detach 를 사용하는것으로 해결하였다.
 ```
 ```KOTLIN
-3. MainActivity UI 중복 문제
+3. MainActivity UI 겹침 문제
    프래그먼트를 기존의 replace방식이 아닌 add 형태로 바꿨기 때문에 
    가로화면으로 변경한다거나, 다크모드를 실행하는경우 UI가 겹쳐서 실행되었다.
    
