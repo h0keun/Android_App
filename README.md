@@ -27,8 +27,7 @@
 자신의 성장그래프를 들여다보고 자신에게 실망하고 뿌듯해한다면 이를통해 마음을 다잡을 수 있겠다는 생각을 하였다.
 
 ## 와이어프레임
-<img width="621" alt="333" src="
-https://user-images.githubusercontent.com/63087903/163360373-80b857b9-f5e1-460f-acf1-a41a8842ac24.jpg">
+<img src="https://user-images.githubusercontent.com/63087903/163360373-80b857b9-f5e1-460f-acf1-a41a8842ac24.jpg" width="800" height="630">
 
 ## 상세설명
 1. 앱 최초실행날짜를 감지하고 하루가 지날때마다 countUP 하여 그래프의 x축이 늘어나도록 설정  
