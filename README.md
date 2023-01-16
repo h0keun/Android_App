@@ -1,7 +1,7 @@
 # 성장그래프 - 'BE BETTER'
  📌 [Google Play Store](https://play.google.com/store/apps/details?id=com.growth.graphh)  
  + 개발환경 : Android Studio, Java, git
- + 개발기간 : 2020.12 ~ 2021.01
+ + 기간 : 2021.01 ~ 2021.05
  + 라이브러리 : Google material design, MPAndroidChart, firebase(FCM) ...
  + 디자인 : 무료 이미지들을 활요하여 Pixlr E로 편집
 
