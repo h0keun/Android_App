@@ -27,10 +27,10 @@
 자신의 성장그래프를 들여다보고 자신에게 실망하고 뿌듯해한다면 이를통해 마음을 다잡을 수 있겠다는 생각을 하였다.
 
 ## 플로우차트
-<img src="https://user-images.githubusercontent.com/63087903/218632791-2084a127-c8eb-4564-8136-21d9bddbf460.jpg" width="950" height="630">
+<img src="https://user-images.githubusercontent.com/63087903/218632791-2084a127-c8eb-4564-8136-21d9bddbf460.jpg" width="950" height="510">
 
 ## 와이어프레임
-<img src="https://user-images.githubusercontent.com/63087903/163360373-80b857b9-f5e1-460f-acf1-a41a8842ac24.jpg" width="950" height="630">
+<img src="https://user-images.githubusercontent.com/63087903/222680327-d184f602-1289-41a7-88f2-02ca9686641a.jpg" width="950" height="510">
 
 ## 상세설명
 1. 앱 최초실행날짜를 감지하고 하루가 지날때마다 countUP 하여 그래프의 x축이 늘어나도록 설정  
